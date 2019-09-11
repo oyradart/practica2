@@ -2,10 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head></h:head> 
 <h:body> 
-#{User.name}
+hola mundo
+
+<h:form id="form">
+<p:dataList value="#{Lista.us}" var="us" type="ordered">
+        <f:facet name="header">
+            Usuarios
+        </f:facet>
+        #{us.getNombre()}, #{us.getClave()}
+ </p:dataList>
+</h:form>
+
+formulario
+<h:form>
+<p:inputText value="#{Lista.nombre}" />
+<p:password value="#{Lista.clave}" />
+<p:commandButton update="form" value="guardar" ajax="false" actionListener="#{Lista.addUsuario()}" />
+</h:form>
+
+<f:metadata>
+    <f:viewParam name="foo" value="#{User.validacion()}" />
+</f:metadata>
 </h:body> 
 </html>
